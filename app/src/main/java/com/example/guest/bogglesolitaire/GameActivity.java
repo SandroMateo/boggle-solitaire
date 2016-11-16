@@ -21,6 +21,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.inputText) EditText mInputText;
     @Bind(R.id.addWordButton) Button mAddWordButton;
     @Bind(R.id.finishGameButton) Button mFinishGameButton;
+    private String gameLetters;
     private String[] mLettersArray;
     private String[] mVowelsArray;
     private List mInputArray;
@@ -37,21 +38,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mFinishGameButton.setOnClickListener(this);
         mInputArray = new ArrayList();
 
-        String gameLetters = generateGame();
+        gameLetters = generateGame();
         mGameText.setText(gameLetters);
-        String inputWord = mInputText.getText().toString();
-        if(checkWord(inputWord, gameLetters)) {
-            mInputArray.add(inputWord);
-        } else {
-            Toast.makeText(GameActivity.this, "Invalid Word!", Toast.LENGTH_LONG).show();
-        }
+
 
     }
 
     @Override
     public void onClick(View v) {
         if(v == mAddWordButton) {
-
+            String inputWord = mInputText.getText().toString().toUpperCase();
+            if(checkWord(inputWord, gameLetters)) {
+                mInputArray.add(inputWord);
+                Toast.makeText(GameActivity.this, "Nice Word!", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(GameActivity.this, "Invalid Word!", Toast.LENGTH_LONG).show();
+            }
+            mInputText.setText("");
         } else if(v == mFinishGameButton) {
 
         }
