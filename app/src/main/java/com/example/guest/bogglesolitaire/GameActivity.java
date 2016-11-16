@@ -21,7 +21,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.addWordButton) Button mAddWordButton;
     @Bind(R.id.finishGameButton) Button mFinishGameButton;
     private String[] mLettersArray;
-    private String[] mVowelsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +29,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         Resources res = getResources();
         mLettersArray = res.getStringArray(R.array.all_letters);
-        mVowelsArray = res.getStringArray(R.array.vowels);
         mAddWordButton.setOnClickListener(this);
         mFinishGameButton.setOnClickListener(this);
 
-        String gameLetters = "";
-        for(int i = 0; i < 8; i++) {
-            int j = (int) Math.floor(Math.random() * 26);
-            if(!gameLetters.contains(mLettersArray[j])) {
-                gameLetters += mLettersArray[j];
-            } else {
-                i--;
-            }
-
-        }
-
+        String gameLetters = generateGame();
         mGameText.setText(gameLetters);
 
 
@@ -57,5 +45,36 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else if(v == mFinishGameButton) {
 
         }
+    }
+
+    public String generateGame() {
+        String possibleLetters = generateGameLetters();
+        while(checkVowels(possibleLetters) < 2) {
+            possibleLetters = generateGameLetters();
+        }
+        return possibleLetters;
+    }
+
+    public String generateGameLetters() {
+        String gameLetters = "";
+        for(int i = 0; i < 8; i++) {
+            int j = (int) Math.floor(Math.random() * 26);
+            if(!gameLetters.contains(mLettersArray[j])) {
+                gameLetters += mLettersArray[j];
+            } else {
+                i--;
+            }
+        }
+        return gameLetters;
+    }
+
+    public int checkVowels(String letters) {
+        int vowelCount = 0;
+        for(int i = 0; i < mVowelsArray.length; i++) {
+            if(letters.contains(mVowelsArray[i])) {
+                vowelCount++;
+            }
+        }
+        return vowelCount;
     }
 }
