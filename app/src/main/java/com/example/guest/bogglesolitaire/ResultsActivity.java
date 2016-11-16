@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class ResultsActivity extends AppCompatActivity {
     @Bind(R.id.wordsOutput) TextView mWordsOutput;
@@ -18,13 +19,17 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        ArrayList mInputWords = intent.getStringArrayListExtra("inputArray");
+        ArrayList mInputArray = intent.getStringArrayListExtra("inputArray");
 
-        for (Object word: mInputWords) {
-            String stringWord = word.toString();
-            mWordsOutput.append(stringWord);
+//        for (Object word: mInputArray) {
+//            String stringWord = word.toString();
+//            mWordsOutput.append(stringWord);
+//        }
+        for(int i = 0; i < mInputArray.size(); i++) {
+            mWordsOutput.append(mInputArray.get(i).toString() + " ");
         }
     }
 }
