@@ -17,12 +17,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/inputText"
         android:hint="Type Word Here"
+        android:padding="5dp"
         android:layout_above="@+id/addWordButton"
         android:layout_alignLeft="@+id/gameText"
         android:layout_alignStart="@+id/gameText"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:background="@color/colorTextIcons"
+        android:textColorHint="@color/colorPrimaryText" />
 
     <Button
         android:layout_width="match_parent"
