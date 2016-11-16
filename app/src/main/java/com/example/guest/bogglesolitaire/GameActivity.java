@@ -71,7 +71,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 letterCount++;
             }
         }
-        if(letterCount > 2) {
+        if(letterCount > 3) {
             if(checkVowels(word) > 0) {
                 return true;
             } else {
