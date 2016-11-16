@@ -29,7 +29,7 @@ public class ResultsActivity extends AppCompatActivity {
 //            mWordsOutput.append(stringWord);
 //        }
         for(int i = 0; i < mInputArray.size(); i++) {
-            mWordsOutput.append(mInputArray.get(i).toString() + " ");
+            mWordsOutput.append(i + "." + mInputArray.get(i).toString() + "   ");
         }
     }
 }
