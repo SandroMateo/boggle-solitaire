@@ -28,5 +28,12 @@
         <item>Y</item>
         <item>Z</item>
     </string-array>
+    <string-array name="vowels">
+        <item>A</item>
+        <item>E</item>
+        <item>I</item>
+        <item>O</item>
+        <item>U</item>
+    </string-array>
     <string name="instructions">The game will randomly generate 8 letters. Enter as many words as you can that contain at least 3 of these letters.</string>
 </resources>

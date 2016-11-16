@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.addWordButton) Button mAddWordButton;
     @Bind(R.id.finishGameButton) Button mFinishGameButton;
     private String[] mLettersArray;
+    private String[] mVowelsArray;
+    private List mInputArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         Resources res = getResources();
         mLettersArray = res.getStringArray(R.array.all_letters);
+        mVowelsArray = res.getStringArray(R.array.vowels);
         mAddWordButton.setOnClickListener(this);
         mFinishGameButton.setOnClickListener(this);
+        mInputArray = new ArrayList();
 
         String gameLetters = generateGame();
         mGameText.setText(gameLetters);
-
+        String inputWord = mInputText.getText().toString();
+        if(checkWord(inputWord, gameLetters)) {
+            mInputArray.add(inputWord);
+        } else {
+            Toast.makeText(GameActivity.this, "Invalid Word!", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -44,6 +54,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if(v == mFinishGameButton) {
 
+        }
+    }
+
+    public boolean checkWord(String word, String letters) {
+        int letterCount = 0;
+        String[] charLetters = letters.split("");
+        for(int i = 0; i < charLetters.length; i++) {
+            if(word.contains(charLetters[i])) {
+                letterCount++;
+            }
+        }
+        if(letterCount > 2) {
+            if(checkVowels(word) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 
