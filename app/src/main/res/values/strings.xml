@@ -30,4 +30,5 @@
         <item>o</item>
         <item>u</item>
     </string>
+    <string name="instructions">The game will randomly generate 8 letters. Enter as many words as you can that contain at least 3 of these letters.</string>
 </resources>
