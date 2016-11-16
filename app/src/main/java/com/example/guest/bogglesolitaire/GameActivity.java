@@ -1,5 +1,6 @@
 package com.example.guest.bogglesolitaire;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private String gameLetters;
     private String[] mLettersArray;
     private String[] mVowelsArray;
-    private List mInputArray;
+    private ArrayList mInputArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             }
             mInputText.setText("");
         } else if(v == mFinishGameButton) {
-
+            Intent intent = new Intent(GameActivity.this, ResultsActivity.class);
+            intent.putStringArrayListExtra("inputArray", mInputArray);
+            startActivity(intent);
         }
     }
 

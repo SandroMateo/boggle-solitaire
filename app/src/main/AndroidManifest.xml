@@ -20,9 +20,9 @@
         <activity android:name=".GameActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.guest.bogglesolitaire.MainActivity">
-            </meta-data>
+                android:value="com.example.guest.bogglesolitaire.MainActivity"></meta-data>
         </activity>
+        <activity android:name=".ResultsActivity"></activity>
     </application>
 
 </manifest>
